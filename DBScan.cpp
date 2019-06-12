@@ -14,10 +14,10 @@ const int NOT_CLASSIFIED = -1;
 
 class Point
 {
-private:
+public:
     vector<double> p_value;
     int cluster;
-public:
+
     double caculate_dis(const Point& pt, int dims);
 };
 
@@ -36,6 +36,7 @@ double Point::caculate_dis(const Point& pt, int dims)
 class DBScan
 {
 private:
+    vector<Point> points;
     int minPts;
 	double Eps; 
     vector<int> labels_;
@@ -48,11 +49,11 @@ private:
 public:
     enum initMode
     {
-		brute;
+		brute,
         kd_tree,
         ball_tree,
     };
-    DBScan(int minPts=1, double Eps=1.0, vector<Point> points);
+    DBScan(int minPts, double Eps, vector<Point> points);
     ~DBScan();
 
     void dbscan();
@@ -60,7 +61,7 @@ public:
 
 };
 
-DBScan::DBScan(int minPts, double Eps, vector<Point> points)
+DBScan::DBScan(int minPts=1, double Eps=1.0, vector<Point> points)
 {
     this->minPts = minPts;
     this->Eps = Eps;
@@ -82,12 +83,12 @@ void DBScan::dbscan()
 {
     for (int i = 0; i < data_size; i++)
     {
-        int adjacent_pt_num = 0
+        int adjacent_pt_num = 0;
         for (int j = 0; j < data_size; j++)
         {
             if (i == j)
                 continue;
-            if (points[i].caculate_dis(points[j]) < Eps)
+            if (points[i].caculate_dis(points[j], dims) < Eps)
                 adjacent_pt_num++;
         }
         // add kernel point index into vector(kernel_point_idx)
@@ -98,12 +99,12 @@ void DBScan::dbscan()
         for (auto i : kernel_points_idx)
         {   
             vector<int> temp_adjacent;
-            for (auto j : kermel_points_idx)
+            for (auto j : kernel_points_idx)
             {
                 if (i == j)
                     continue;
-                if (points[i].caculate_dis(points[j]) < Eps)
-                    temp_adjacent.push_back()
+                if (points[i].caculate_dis(points[j], dims) < Eps)
+                    temp_adjacent.push_back(j);
             }
         }
     }
