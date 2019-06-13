@@ -62,7 +62,7 @@ public:
     };
     DBScan(int minPts, double Eps, vector<Point> points);
     ~DBScan();
-
+    vector<int> get_labels(){return labels_;}
     void dbscan();
     // void get_label(const double* pt, int* label);
 
@@ -213,12 +213,13 @@ int main()
         // p.cluster = NOT_CLASSIFIED;
         points.push_back({point, NOT_CLASSIFIED});
     }
-    std::cout<<points.size() << "  " << points[0].cluster << " " <<endl;
-    for (auto i : points[0].p_value){
-        cout << i;
-    }
-    cout << endl;
+    
     DBScan dbs(2, 10.0, points);
     dbs.dbscan();
+
+    for (auto i : dbs.get_labels()){
+        cout << i << " ";
+    }
+    cout << endl;
     return 0;
 }
