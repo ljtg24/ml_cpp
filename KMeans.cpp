@@ -230,6 +230,6 @@ int main()
     {
         cout << labels[i] << ": " << data[i*3] << "," << data[i*3+1] << "," << data[i*3+2] << '\n';
     }
-
+    // delete []labels;
     return 0;  
 }
