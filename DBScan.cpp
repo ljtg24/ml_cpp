@@ -11,7 +11,6 @@
 #include<stdlib.h>
 #include<assert.h>
 #include<string>
-using namespace std;  
 typedef map<int, vector<int>> pts_in_kernel_eps;
 bool eleInDeque(deque<int> dd, int ele);
 // const int NOISE = -3;

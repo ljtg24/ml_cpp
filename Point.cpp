@@ -1,7 +1,4 @@
 #include "Point.h"
-const int NOISE = -3;
-const int NOT_CLASSIFIED = -2;
-const int WAIT_CLASSIFIED = -1;
 // typedef vector<pts_in_kernel_eps> kernels_info;
 
 double Point::caculate_dis(const Point& pt, int dims)
