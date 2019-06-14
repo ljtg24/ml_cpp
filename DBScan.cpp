@@ -1,44 +1,45 @@
+#include "Point.h"
+// #include<math.h>
+// #include<vector>
+// #include<map>
+
 #include<iostream>  
 #include<cstring>  
 #include<cctype>
-#include<math.h>
-#include<vector>
-#include<map>
 #include<deque>
 #include<stdio.h>
 #include<stdlib.h>
 #include<assert.h>
 #include<string>
 using namespace std;  
-
-const int NOISE = -3;
-const int NOT_CLASSIFIED = -2;
-const int WAIT_CLASSIFIED = -1;
 typedef map<int, vector<int>> pts_in_kernel_eps;
-// typedef vector<pts_in_kernel_eps> kernels_info;
 bool eleInDeque(deque<int> dd, int ele);
+// const int NOISE = -3;
+// const int NOT_CLASSIFIED = -2;
+// const int WAIT_CLASSIFIED = -1;
+// // typedef vector<pts_in_kernel_eps> kernels_info;
 
 
-class Point
-{
-public:
-    vector<double> p_value;
-    int cluster;
+// class Point
+// {
+// public:
+//     vector<double> p_value;
+//     int cluster;
 
-    double caculate_dis(const Point& pt, int dims);
-};
+//     double caculate_dis(const Point& pt, int dims);
+// };
 
-double Point::caculate_dis(const Point& pt, int dims)
-{
-    double distance = 0.0;
-    for (int i = 0; i < dims; i++)
-    {
-        distance += pow((p_value[i] - pt.p_value[i]), 2);
-    }
-    distance = sqrt(distance);
+// double Point::caculate_dis(const Point& pt, int dims)
+// {
+//     double distance = 0.0;
+//     for (int i = 0; i < dims; i++)
+//     {
+//         distance += pow((p_value[i] - pt.p_value[i]), 2);
+//     }
+//     distance = sqrt(distance);
 
-    return distance;
-}
+//     return distance;
+// }
 
 class DBScan
 {
